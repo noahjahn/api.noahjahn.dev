@@ -1,0 +1,25 @@
+version: "2"
+services:
+  api.noahjahn.dev:
+    image: "node:14-alpine"
+    user: "node"
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./:/home/node/app
+    ports:
+      - "8000:8000"
+    command: /bin/ash -c "npm install && npm run dev:start"
+  mongo:
+    image: mongo
+    environment:
+      MONGO_INITDB_DATABASE: api.noahjahn.dev
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: Codingisfun!
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb:/data/db
+volumes:
+  mongodb:
