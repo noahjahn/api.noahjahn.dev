@@ -28,7 +28,7 @@ function Format (data = "", errors = null) {
         } else {
             throw TypeError(`Response.Error object expected; Type ${typeof error} received.`)
         }
-    }
-}
+    };
+};
 
 module.exports = Format;

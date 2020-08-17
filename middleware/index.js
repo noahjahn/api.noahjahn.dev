@@ -7,6 +7,6 @@ module.exports = express()
     .use(bodyParser.json())
     .use(response.init)
     .use(routes)
-    .use(function (req, res) {
+    .use((req, res) => {
         res.status(404).sendFormat(req, res);
     });
