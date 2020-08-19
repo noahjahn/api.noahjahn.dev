@@ -1,5 +1,5 @@
 const Format = require('./format');
-const Error = require('./error');
+const ResponseError = require('./error');
 
 module.exports.init = (req, res, next) => {
     res.sendFormat = this.sendFormat;
@@ -55,7 +55,7 @@ module.exports.sendFormat = (req, res) => {
         case 308:
             break;
         case 400:
-            responseFormat.appendError(new Error(null, "Bad request", "Fix it!"));
+            responseFormat.appendError(new ResponseError(null, "Bad request", "Fix it!"));
             break;
         case 401:
             break;
@@ -64,7 +64,7 @@ module.exports.sendFormat = (req, res) => {
         case 403:
             break;
         case 404:
-            responseFormat.appendError(new Error(null, "Not Found", "Fix it!"));
+            responseFormat.appendError(new ResponseError(null, "Not Found", "Fix it!"));
             break;
         case 405:
             break;
@@ -97,6 +97,7 @@ module.exports.sendFormat = (req, res) => {
         case 420:
             break;
         case 422:
+            responseFormat.appendError(new ResponseError(res.errors[422].property, "Unprocessable Entity", res.errors[422].message));
             break;
         case 423:
             break;

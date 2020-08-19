@@ -1,4 +1,4 @@
-function Error (property = null, error, message = null) {
+function ResponseError (property = null, error, message = null) {
     if (property) {
         this.property = property;
     }
@@ -10,4 +10,4 @@ function Error (property = null, error, message = null) {
     }
 }
 
-module.exports = Error;
+module.exports = ResponseError;
