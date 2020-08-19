@@ -6,7 +6,8 @@ function MongoDb (connectionString) {
     this.connect = async (connectionString = null) => {
         this.connection = await mongoose.connect(connectionString || this.connectionString, {
             useNewUrlParser: true,
-            useUnifiedTopology: true
+            useUnifiedTopology: true,
+            useCreateIndex: true
         }).catch((err) => {
             console.log('Error on start: ' + err.stack);
             process.exit(1);
