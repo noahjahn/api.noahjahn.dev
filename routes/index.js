@@ -1,11 +1,9 @@
 const router = require('express').Router();
-var passport = require('passport');
+const passport = require('passport');
 const authentication = require('../components/authentication');
-const users = require('../components/users');
-const visitors = require('../components/visitors');
+const v1 = require('./v1');
 
 router.use('/authentication', authentication);
-router.use('/users', users);
-router.use('/visitors', visitors);
+router.use('/v1', passport.authenticate('jwt', { session: false }), v1);
 
 module.exports = router;
