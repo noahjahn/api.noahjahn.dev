@@ -1,7 +1,7 @@
 const router = require('express').Router();
+Visitor = require('../../config/mongodb/models/visitor');
 
 router.post('/', (req, res) => {
-    Visitor = require('../../config/mongodb/models/visitor');
 
     var visitor = new Visitor({ 
         "ipAddress": "68.43.183.18",
@@ -9,13 +9,11 @@ router.post('/', (req, res) => {
         "darkMode": true,
     });
 
-
     visitor.save((err) => {
         if (err) {
             return console.log(err);
         }
         console.log('saved visitor')
-        // saved!
     });
 
     Visitor.find({}, (err, visitors) => {
