@@ -5,7 +5,7 @@ const { ExtractJwt } = require('passport-jwt');
 const User = require('../config/mongodb/models/user');
 
 passport.use(new HeaderAPIKeyStrategy(
-    { header: 'X-Api-Key', prefix: '' },
+    { header: 'X-Api-Key' },
     false,
     function (apikey, done) {
         User.findOne({ apikey: apikey }, (err, user) => {
