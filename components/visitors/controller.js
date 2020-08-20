@@ -1,11 +1,11 @@
 const Visitor = require('../../config/mongodb/models/visitor');
-const { getLocationByPublicIpv4 } = require('./service');
+const { getLocationByPublicIpv4 } = require('../../libraries/ip-api.com');
 
 module.exports = {
-    create: (req, res) => {
-        var location = getLocationByPublicIpv4(req.connection.remoteAddress);
+    create: async (req, res) => {
+        var location = await getLocationByPublicIpv4(req.connection.remoteAddress);
         var visitor = new Visitor({ 
-            "ipAddress":  req.connection.remoteAddress,
+            "ipAddress": req.connection.remoteAddress,
             "location": location,
             "darkMode": req.body.darkMode,
         });

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const vistorSchema = new mongoose.Schema({
     "ipAddress": String,
-    "location": String,
+    "location": mongoose.Schema.Types.Mixed,
     "origin": String,
     "darkMode": Boolean,
 }, { 
