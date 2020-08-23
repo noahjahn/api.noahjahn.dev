@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
 const vistorSchema = new mongoose.Schema({
-    "ipAddress": String,
-    "location": mongoose.Schema.Types.Mixed,
     "origin": String,
+    "locations": Array,
+    "count": { type: Number, default: 1 },
     "darkMode": Boolean,
 }, { 
     timestamps: true

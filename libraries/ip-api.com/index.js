@@ -12,7 +12,7 @@ module.exports.getLocationByPublicIpv4 = (ipAddress) => {
             }
         }
     
-        let req = http.request(requestOptions, (res) => {
+        var req = http.request(requestOptions, (res) => {
             var resBody = "";
     
             res.on("data", (chunk) => {
@@ -20,18 +20,28 @@ module.exports.getLocationByPublicIpv4 = (ipAddress) => {
             });
     
             res.on("end", () => {
-                resBody = JSON.parse(resBody);
-                let location = {
-                    "countryCode": resBody.countryCode,
-                    "region": resBody.region,
-                    "city": resBody.city,
-                    "zip": resBody.zip,
+                try {
+                    resBody = JSON.parse(resBody);
+                    if (resBody.status == 'success') {
+                        return resolve({
+                            "ipAddress": resBody.query,
+                            "countryCode": resBody.countryCode,
+                            "region": resBody.region,
+                            "city": resBody.city,
+                            "zip": resBody.zip
+                        });
+                    } else {
+                        reject(resBody);
+                    }
+                } catch (err) {
+                    reject(err);
                 }
-                resolve(location);
             });
+            
         });
     
         req.on('error', (err) => {
+            console.log('test error');
             reject(err);
         });
     
