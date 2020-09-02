@@ -8,7 +8,6 @@ api.noahjahn.dev was made to track how many unique visitors come to noahjahn.dev
 2. [Getting Started](#getting-started)
 3. [Docker](#docker)
 4. [Deployment](#deployment)
-5. [Acknowledgments](#acknowledgments)
 
 
 ## Quick Links
