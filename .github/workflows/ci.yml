@@ -13,6 +13,7 @@ jobs:
           npm install
   deploy:
     runs-on: self-hosted
+    needs: [build]
     steps:
       - run: |
-          /usr/bin/rysnc $GITHUB_WORKSPACE ~/sites/api.noahjahn.dev
+          rsync $GITHUB_WORKSPACE ~/sites/api.noahjahn.dev
