@@ -15,4 +15,4 @@ jobs:
     runs-on: self-hosted
     steps:
       - run: |
-          rysnc $GITHUB_WORKSPACE ~/sites/api.noahjahn.dev
+          /usr/bin/rysnc $GITHUB_WORKSPACE ~/sites/api.noahjahn.dev
