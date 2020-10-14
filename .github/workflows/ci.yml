@@ -16,4 +16,4 @@ jobs:
     needs: [build]
     steps:
       - run: |
-          rsync $GITHUB_WORKSPACE ~/sites/api.noahjahn.dev
+          rsync -r --copy-links --verbose $GITHUB_WORKSPACE /home/pi/sites
