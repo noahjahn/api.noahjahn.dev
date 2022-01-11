@@ -1,6 +1,6 @@
 # api.noahjahn.dev
 
-api.noahjahn.dev was made to track how many unique visitors come to noahjahn.dev, how often they access the site, and where they are accessing it from.
+api.noahjahn.dev was made to track how many unique visitors come to noahjahn.dev, how often they access the site, where they are accessing it from, and their preference of dark/light mode.
 
 ### Table Of Contents
 
