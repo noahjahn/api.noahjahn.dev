@@ -1,7 +1,7 @@
 version: "2"
 services:
   api.noahjahn.dev:
-    image: "node:14-alpine"
+    image: "node:lts-alpine"
     user: "node"
     working_dir: /home/node/app
     environment:
