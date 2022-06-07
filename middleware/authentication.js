@@ -1,4 +1,4 @@
-var passport = require('passport');
+const passport = require('passport');
 const { HeaderAPIKeyStrategy } = require('passport-headerapikey');
 const JwtStrategy = require('passport-jwt').Strategy;
 const { ExtractJwt } = require('passport-jwt');
@@ -8,13 +8,12 @@ passport.use(new HeaderAPIKeyStrategy(
     { header: 'X-Api-Key' },
     false,
     function (apikey, done) {
-        User.findOne({ apikey: apikey }, (err, user) => {
-            if (err) {
-                console.error(err);
-                return done(err);
+        User.findOne({ apikey: apikey }, (error, user) => {
+            if (error) {
+                console.error(error);
+                return done(error);
             }
             if (!user) {
-                console.log(apikey);
                 return done(null, false);
             }
 
@@ -24,15 +23,15 @@ passport.use(new HeaderAPIKeyStrategy(
 ));
 
 const jwtOptions = {
-    "jwtFromRequest": ExtractJwt.fromAuthHeaderAsBearerToken(),
-    "secretOrKey": process.env.JWT_SECRET || 'local'
+    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+    secretOrKey: process.env.JWT_SECRET || 'local'
 }
 
 passport.use(new JwtStrategy(jwtOptions, (jwtPayload, done) => {
-    User.findOne({ id: jwtPayload.user.id }, (err, user) => {
-        if (err) {
-            console.error(err);
-            return done(err);
+    User.findOne({ id: jwtPayload.user.id }, (error, user) => {
+        if (error) {
+            console.error(error);
+            return done(error);
         }
         if (!user) {
             return done(null, false);

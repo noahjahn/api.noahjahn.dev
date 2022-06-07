@@ -1,6 +1,6 @@
 const ResponseError = require('./error')
 
-function Format (data = "", errors = null) {
+function Format(data = "", errors = null) {
     this.data = data;
     if (errors) {
         this.errors = errors;
@@ -15,7 +15,7 @@ function Format (data = "", errors = null) {
     this.appendError = (error) => {
         if (error instanceof ResponseError) {
             if (this.errors) {
-                if (! Array.isArray(this.errors)) {
+                if (!Array.isArray(this.errors)) {
                     let tempError = this.errors;
                     this.errors = [];
                     this.errors.push(tempError);

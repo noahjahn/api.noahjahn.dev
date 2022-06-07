@@ -8,8 +8,8 @@ module.exports = {
     getLocationByPublicIpv4: async (ipAddress) => {
         try {
             return (await ipApi.getLocationByPublicIpv4(ipAddress));
-        } catch (err) {
-            console.error(err);
+        } catch (error) {
+            console.error(error);
             return;
         }
     },
@@ -35,19 +35,19 @@ module.exports = {
                 res.data = visitor
                 res.status(200);
             })
-            .catch((err) => {
-                if (err.code == 11000) {
+            .catch((error) => {
+                if (error.code == 11000) {
                     if (!res.errors) {
                         res.errors = {
                             422: {
-                                "property": Object.keys(err.keyPattern)[0],
-                                "message": `${Object.keys(err.keyPattern)[0]} already exists, please enter a different one.`
+                                property: Object.keys(error.keyPattern)[0],
+                                message: `${Object.keys(error.keyPattern)[0]} already exists, please enter a different one.`
                             }
                         }
                     }
                     res.status(422);
                 } else {
-                    console.error(err);
+                    console.error(error);
                     res.status(500);
                 }
             })

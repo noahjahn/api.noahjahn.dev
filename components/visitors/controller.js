@@ -5,20 +5,20 @@ const { getRemotePublicIp, getLocationByPublicIpv4, saveAndRespond, hasNewIpAddr
 module.exports = {
     create: async (req, res) => {
         try {
-            var visitor = new Visitor({
-                "origin": req.get('host'),
-                "darkMode": req.body.darkMode,
+            const visitor = new Visitor({
+                origin: req.get('host'),
+                darkMode: req.body.darkMode,
             });
-            let ipAddress = getRemotePublicIp(req);
-            let location = await getLocationByPublicIpv4(ipAddress);
+            const ipAddress = getRemotePublicIp(req);
+            const location = await getLocationByPublicIpv4(ipAddress);
             if (location) {
                 visitor.locations = [
                     location
                 ];
             }
             saveAndRespond(visitor, req, res);
-        } catch (err) {
-            console.error(err); 
+        } catch (error) {
+            console.error(error);
             exit(1);
         }
     },
@@ -29,12 +29,11 @@ module.exports = {
 
     update: async (req, res) => {
         try {
-            var visitor = await Visitor.findById(req.body._id);
+            const visitor = await Visitor.findById(req.body._id);
             if (visitor) {
-                let ipAddress = getRemotePublicIp(req);
+                const ipAddress = getRemotePublicIp(req);
                 if (hasNewIpAddress(visitor, ipAddress)) {
-                    console.log(ipAddress);
-                    let location = await getLocationByPublicIpv4(ipAddress);
+                    const location = await getLocationByPublicIpv4(ipAddress);
                     if (location) {
                         (visitor.locations).push(location);
                     }
@@ -47,9 +46,9 @@ module.exports = {
             } else {
                 res.status(404).sendFormat(req, res);
             }
-            
-        } catch (err) {
-            console.error(err);
+
+        } catch (error) {
+            console.error(error);
             exit(1);
         }
     }

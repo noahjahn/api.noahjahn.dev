@@ -1,4 +1,4 @@
-function ResponseError (property = null, error, message = null) {
+function ResponseError(property = null, error, message = null) {
     if (property) {
         this.property = property;
     }

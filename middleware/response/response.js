@@ -9,15 +9,15 @@ module.exports.init = (req, res, next) => {
 module.exports.sendFormat = (req, res) => {
     res.header("Content-Type", 'application/json');
     responseFormat = new Format();
-    switch(res.statusCode) {
+    switch (res.statusCode) {
         case 100:
             break;
         case 101:
-            break;        
+            break;
         case 102:
             break;
         case 200:
-            break;        
+            break;
         case 201:
             break;
         case 202:
@@ -155,5 +155,5 @@ module.exports.sendFormat = (req, res) => {
     if (res.data) {
         responseFormat.setData(res.data);
     }
-    res.json(responseFormat);    
+    res.json(responseFormat);
 };

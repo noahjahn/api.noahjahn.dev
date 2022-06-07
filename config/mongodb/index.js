@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-function MongoDb (connectionString) {
+function MongoDb(connectionString) {
     this.connection;
     this.connectionString = connectionString
     this.connect = async (connectionString = null) => {
@@ -8,12 +8,11 @@ function MongoDb (connectionString) {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useCreateIndex: true
-        }).catch((err) => {
-            console.log('Error on start: ' + err.stack);
+        }).catch((error) => {
+            console.error('Error on start: ' + error.stack);
             process.exit(1);
-          });
+        });
     };
 };
 
 module.exports = MongoDb;
-
