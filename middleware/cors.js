@@ -3,24 +3,21 @@ const User = require('../config/mongodb/models/user');
 
 module.exports = () => {
     corsOptions = {
-        origin: async (origin, callback) => {
-            console.log(origin);
-            if (!origin) { 
+        origin: (origin, callback) => {
+            if (!origin) {
                 return callback(null, true);
             } else {
-                User.findOne({ origins: origin})
-                .then((user) => {
-                    console.log(user);
-                    if (user) {
-                        callback(null, true);
-                    } else {
-                        console.log('error!');
-                        callback(new Error('Not allowed by CORS'));
-                    }
-                })
-                .catch((error) => {
-                    callback(error);
-                });
+                User.findOne({ origins: origin })
+                    .then((user) => {
+                        if (user) {
+                            callback(null, origin);
+                        } else {
+                            callback(new Error('Not allowed by CORS'));
+                        }
+                    })
+                    .catch((error) => {
+                        callback(error);
+                    });
             }
         }
     }
