@@ -9,14 +9,15 @@ jobs:
   build:
     runs-on: self-hosted
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       - name: Install npm dependencies
         run: |
           npm install
+
   deploy:
     runs-on: self-hosted
     needs: [build]
     steps:
       - run: |
-          rsync -r --copy-links --verbose $GITHUB_WORKSPACE /home/pi/sites
+          rsync -r --copy-links --verbose $GITHUB_WORKSPACE /home/github-runner/apps
+          pm2 reload /home/github-runner/apps/api.noahjahn.dev/ecosystem.config.js --only api.noahjahn.dev
