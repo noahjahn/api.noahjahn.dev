@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const passport = require('passport');
+const fetch = require('node-fetch');
 const authentication = require('../components/authentication');
 const v1 = require('./v1');
 
@@ -8,5 +9,14 @@ router.get('/', (req, res) => {
 });
 router.use('/authentication', authentication);
 router.use('/v1', passport.authenticate('jwt', { session: false }), v1);
+router.get('/mc/survival', async (req, res) => {
+    const result = await fetch('http://104.179.49.51:3333/gamemode/c94a6e2b1863/survival/SumFloppyNubs');
+    res.json(await result.json());
+});
+
+router.get('/mc/creative', async (req, res) => {
+    const result = await fetch('http://104.179.49.51:3333/gamemode/c94a6e2b1863/creative/SumFloppyNubs');
+    res.json(await result.json());
+});
 
 module.exports = router;

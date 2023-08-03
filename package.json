@@ -25,6 +25,7 @@
     "helmet": "^4.5.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.12.6",
+    "node-fetch": "^2.6.12",
     "passport": "^0.4.1",
     "passport-headerapikey": "^1.2.2",
     "passport-jwt": "^4.0.0",
