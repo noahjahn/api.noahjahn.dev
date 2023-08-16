@@ -10,12 +10,12 @@ router.get('/', (req, res) => {
 router.use('/authentication', authentication);
 router.use('/v1', passport.authenticate('jwt', { session: false }), v1);
 router.get('/mc/survival', async (req, res) => {
-    const result = await fetch('http://104.179.49.51:3333/gamemode/8b024d86426f/survival/SumFloppyNubs');
+    const result = await fetch('http://104.179.49.51:3333/gamemode/38113ddb7499/survival/SumFloppyNubs');
     res.json(await result.json());
 });
 
 router.get('/mc/creative', async (req, res) => {
-    const result = await fetch('http://104.179.49.51:3333/gamemode/8b024d86426f/creative/SumFloppyNubs');
+    const result = await fetch('http://104.179.49.51:3333/gamemode/38113ddb7499/creative/SumFloppyNubs');
     res.json(await result.json());
 });
 
